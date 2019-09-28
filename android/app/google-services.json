@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "106708216297",
+    "firebase_url": "https://flutterislamiccenter.firebaseio.com",
+    "project_id": "flutterislamiccenter",
+    "storage_bucket": "flutterislamiccenter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106708216297:android:4290d9864dee98f6f4c378",
+        "android_client_info": {
+          "package_name": "com.trian.islamic_center"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106708216297-o0lpa52qqkkbql6k21u4mlbts1s4pjht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trian.islamic_center",
+            "certificate_hash": "300a4fcd839874691fb8ebe8951336fb99f6d55b"
+          }
+        },
+        {
+          "client_id": "106708216297-s8k7u0rqu6vbf3g3oqhj408f5aus7892.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU0NzQcq28HuyFcszUhp5fq6ucX1Xrfgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106708216297-s8k7u0rqu6vbf3g3oqhj408f5aus7892.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
