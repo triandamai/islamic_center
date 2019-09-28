@@ -74,23 +74,28 @@ class _CameraScreenState extends State<CameraScreen> {
       ),
       body: Container(
         child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: Stack(
             children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: _cameraPreviewWidget(context),
-              ),
-              SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _cameraTogglesRowWidget(),
-                  _captureControlRowWidget(context),
-                  Spacer()
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: _cameraPreviewWidget(context),
+                  ),
                 ],
               ),
-              SizedBox(height: 20.0)
+              Positioned(
+                bottom: MediaQuery.of(context).size.height - 500,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _cameraTogglesRowWidget(),
+                    _captureControlRowWidget(context),
+                    Spacer()
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -148,6 +153,7 @@ class _CameraScreenState extends State<CameraScreen> {
 
   Widget _cameraPreviewWidget(BuildContext context) {
     var widthScreen = MediaQuery.of(context).size.width;
+    var heightScreen = MediaQuery.of(context).size.height / 3.0;
 
     if (controller == null || !controller.value.isInitialized) {
       return const Text(
@@ -160,69 +166,47 @@ class _CameraScreenState extends State<CameraScreen> {
       );
     }
     print("${controller.value.aspectRatio}");
-    return AspectRatio(
-      aspectRatio: controller.value.aspectRatio,
-      child: Stack(
-        children: <Widget>[
-          CameraPreview(controller),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Flexible(
-                flex: 1,
-                child: Container(
-                  height: 400,
-                  width: widthScreen,
-                  decoration: BoxDecoration(color: Colors.grey),
-                  child: Text(" "),
-                ),
-              ),
-              Flexible(
-                flex: 3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Container(
-                      height: widthScreen - 160,
-                      decoration: BoxDecoration(color: Colors.grey),
-                      child: Text(" "),
+    return SingleChildScrollView(
+      child: AspectRatio(
+        aspectRatio: controller.value.aspectRatio,
+        child: Stack(
+          children: <Widget>[
+            CameraPreview(controller),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    height: heightScreen,
+                    width: widthScreen,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(50),
+                          width: widthScreen - 30,
+                          height: widthScreen - 160,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.red),
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromRGBO(20, 20, 20, 0)),
+                          child: Text(
+                            "",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      padding: EdgeInsets.all(50),
-                      width: widthScreen - 30,
-                      height: widthScreen - 160,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.red),
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color.fromRGBO(20, 20, 20, 0)),
-                      child: Text(
-                        "",
-                        style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                    Container(
-                      height: widthScreen - 160,
-                      decoration: BoxDecoration(color: Colors.grey),
-                      child: Text(" "),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Container(
-                  width: widthScreen,
-                  height: 500,
-                  decoration: BoxDecoration(color: Colors.grey),
-                  child: Text(" "),
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

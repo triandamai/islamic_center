@@ -127,7 +127,9 @@ class _UserState extends State<User> {
               ListTile(
                 leading: Icon(Icons.check_circle_outline),
                 title: Text("Validasi Akun"),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/camera");
+                },
               ),
               ListTile(
                 leading: Icon(Icons.store),
