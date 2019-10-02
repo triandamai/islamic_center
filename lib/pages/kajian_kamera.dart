@@ -1,10 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:islamic_center/services/auth.dart';
 
-final sharedservice auth = new serviceAuth();
-final GoogleSignIn _googleSignIn = GoogleSignIn();
+import 'package:ant_icons/ant_icons.dart';
+import 'package:islamic_center/services/API.dart';
 
 class Camera extends StatefulWidget {
   @override
@@ -12,6 +11,14 @@ class Camera extends StatefulWidget {
 }
 
 class _CameraState extends State<Camera> {
+  final API api = new Controller();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,8 +63,8 @@ class _CameraState extends State<Camera> {
                     Flexible(
                       flex: 1,
                       child: IconButton(
-                        icon: Icon(Icons.mic),
-                        onPressed: () {},
+                        icon: Icon(AntIcons.notification_outline),
+                        onPressed: null,
                       ),
                     ),
                   ],

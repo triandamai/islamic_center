@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:islamic_center/services/API.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -7,6 +9,15 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final API api = new Controller();
+
+  @override
+  void initState() {
+    // TODO implement initState
+    super.initState();
+    api.getcurrentUser().then((FirebaseUser user) {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

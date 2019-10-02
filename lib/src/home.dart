@@ -1,3 +1,5 @@
+import 'package:ant_icons/ant_icons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:islamic_center/pages/kajian_home.dart';
@@ -5,7 +7,8 @@ import 'package:islamic_center/pages/kajian_kamera.dart';
 import 'package:islamic_center/pages/kajian_map.dart';
 import 'package:islamic_center/pages/kajian_notif.dart';
 import 'package:islamic_center/pages/kajian_profile.dart';
-import 'package:islamic_center/services/auth.dart';
+import 'package:islamic_center/services/API.dart';
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   @override
@@ -13,6 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final API api = new Controller();
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomePage(),
@@ -22,7 +26,20 @@ class _HomeState extends State<Home> {
     User(),
   ];
 
-  sharedservice auth = new serviceAuth();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    api.getcurrentUser().then((FirebaseUser user) {
+      if (user == null) {
+      } else {
+        api.gett("cekuser/${user.uid}").then((http.Response res) {
+          print(res.body);
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,23 +52,23 @@ class _HomeState extends State<Home> {
             type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Icon(AntIcons.home_outline),
                 title: Text(""),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.location_on),
+                icon: Icon(AntIcons.environment_outline),
                 title: Text(""),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.camera_enhance),
+                icon: Icon(AntIcons.camera_outline),
                 title: Text(""),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.mail),
+                icon: Icon(AntIcons.mail_outline),
                 title: Text(""),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.android),
+                icon: Icon(AntIcons.user),
                 title: Text(""),
               ),
             ],

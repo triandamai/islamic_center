@@ -1,3 +1,4 @@
+import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -84,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: Icon(AntIcons.notification_outline),
             onPressed: null,
           )
         ],
@@ -149,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       margin: EdgeInsets.only(left: 20, right: 20),
                       child: SizedBox(
-                        height: 300,
+                        height: 200,
                         width: 400,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                             tag: list[index].tag.toString(),
                             child: Image.asset(
                               "assets/images/kajian.jpg",
-                              fit: BoxFit.fill,
+                              fit: BoxFit.fitWidth,
                             ),
                           ),
                         ),
