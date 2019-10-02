@@ -85,8 +85,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   ),
                 ],
               ),
-              Positioned(
-                bottom: MediaQuery.of(context).size.height - 500,
+              Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

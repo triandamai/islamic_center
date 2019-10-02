@@ -29,12 +29,13 @@ dependencies:
   path: ^1.6.2
   esys_flutter_share: ^1.0.2
 
+  http:
 
   shared_preferences: ^0.5.3+4
-  #inputan buat kode
+
   pinput:
-  #toast
   fluttertoast:
+  ant_icons: ^1.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -44,13 +45,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -76,15 +75,15 @@ flutter:
   # example:
 
   fonts:
-    - family : Montserrat
+    - family: Montserrat
       fonts:
-        - asset : assets/fonts/Montserrat-Medium.otf
-        - asset : assets/fonts/Montserrat-Regular.otf
-    - family : SourceSans
+        - asset: assets/fonts/Montserrat-Medium.otf
+        - asset: assets/fonts/Montserrat-Regular.otf
+    - family: SourceSans
       fonts:
-        - asset : assets/fonts/SourceSansPro-Light.ttf
-        - asset : assets/fonts/SourceSansPro-Regular.ttf
-    - family:  MyCustomIcon
+        - asset: assets/fonts/SourceSansPro-Light.ttf
+        - asset: assets/fonts/SourceSansPro-Regular.ttf
+    - family: MyCustomIcon
       fonts:
         - asset: assets/icons/MyCustomIcon.ttf
   # fonts:
