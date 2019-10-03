@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:ant_icons/ant_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +10,7 @@ import 'package:islamic_center/pages/kajian_notif.dart';
 import 'package:islamic_center/pages/kajian_profile.dart';
 import 'package:islamic_center/services/API.dart';
 import 'package:http/http.dart' as http;
+import 'package:islamic_center/models/userModel.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,19 +20,20 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final API api = new Controller();
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    HomePage(),
-    Kajian(),
-    Camera(),
-    Email(),
-    User(),
-  ];
+
+  String name;
+  String photo;
+  String email;
 
   @override
   void initState() {
-    // TODO: implement initState
+    // TODO implement initState
     super.initState();
-    api.getcurrentUser().then((FirebaseUser user) {
+    getUserInfo();
+  }
+
+  void getUserInfo() async {
+    await api.getcurrentUser().then((FirebaseUser user) {
       if (user == null) {
       } else {
         api.gett("cekuser/${user.uid}").then((http.Response res) {
@@ -38,10 +41,37 @@ class _HomeState extends State<Home> {
         });
       }
     });
+    await api.getcurrentUser().then((FirebaseUser user) {
+      if (user == null) {
+      } else {
+        api.gett("users/${user.uid}").then((http.Response res) {
+          var data = jsonDecode(res.body);
+          setState(() {
+            this.name = data["data"][0]["nama"];
+            this.email = data["data"][0]["email"];
+            this.photo = data["data"][0]["foto"];
+          });
+          print(data);
+          print(data["data"][0]["uid"]);
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _children = [
+      HomePage(),
+      Kajian(),
+      Camera(),
+      Email(),
+      User(
+        nama: name,
+        email: email,
+        foto: photo,
+      ),
+    ];
+
     return Scaffold(
       body: SafeArea(
         child: Scaffold(

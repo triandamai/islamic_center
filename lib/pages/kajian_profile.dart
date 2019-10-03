@@ -1,14 +1,22 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:islamic_center/services/auth.dart';
 import 'package:islamic_center/src/login.dart';
+import 'package:islamic_center/services/API.dart';
+import 'package:http/http.dart' as http;
 
 final sharedservice auth = new serviceAuth();
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 class User extends StatefulWidget {
+  final String nama;
+  final String foto;
+  final String email;
+  User({this.nama, this.email, this.foto});
   @override
   _UserState createState() => _UserState();
 }
@@ -16,6 +24,11 @@ class User extends StatefulWidget {
 class _UserState extends State<User> {
   FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final API api = new Controller();
+
+  String nama;
+  String email;
+  String photo;
 
   var gambar = [
     {'gambar': 'assets/images/kajian.jpg'},
@@ -23,6 +36,12 @@ class _UserState extends State<User> {
     {'gambar': 'assets/images/kajian.jpg'},
     {'gambar': 'assets/images/kajian.jpg'}
   ];
+
+  @override
+  void initState() {
+    // TODO implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +60,8 @@ class _UserState extends State<User> {
                   Container(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        "assets/images/kajian.jpg",
+                      child: Image.network(
+                        "${widget.foto}",
                         width: MediaQuery.of(context).size.width / 5,
                         height: MediaQuery.of(context).size.width / 5,
                       ),
@@ -59,7 +78,7 @@ class _UserState extends State<User> {
                           width: MediaQuery.of(context).size.width / 2.5,
                           child: Container(
                             child: Text(
-                              "Trian Damai",
+                              "${widget.nama}",
                               textAlign: TextAlign.left,
                             ),
                           ),
@@ -68,7 +87,7 @@ class _UserState extends State<User> {
                           width: MediaQuery.of(context).size.width / 2.5,
                           child: Container(
                             child: Text(
-                              "triannurizkillah@gmail.com",
+                              "${widget.email}",
                               textAlign: TextAlign.left,
                             ),
                           ),
