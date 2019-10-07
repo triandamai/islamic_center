@@ -321,18 +321,14 @@ class _LoginPageState extends State<LoginPage> {
                           "Content-type": "application/json",
                           'Accept': 'application/json',
                         };
-                        var body = {
-                          'uid': user.uid,
-                          'nama': user.displayName,
-                          'nohp': user.phoneNumber,
-                          'type': "google",
-                          "foto": user.photoUrl
-                        };
 
-                        api.post("users", body).then((http.Response res) {
+                        api
+                            .gett("cekuser/${user.uid}")
+                            .then((http.Response res) {
                           print(res.body);
                           if (res.statusCode == 200) {
                             var status = jsonDecode(res.body);
+
                             if (status["success"] == true) {
                               Fluttertoast.showToast(
                                   msg: "Login berhasil",
@@ -342,7 +338,15 @@ class _LoginPageState extends State<LoginPage> {
                                   backgroundColor: Colors.green,
                                   textColor: Colors.white,
                                   fontSize: 16.0);
-                              Navigator.pushReplacementNamed(context, "/home");
+                              if (status["data"] == 4) {
+                                //belum ada di db
+                                Navigator.pushReplacementNamed(
+                                    context, "/updateuser");
+                              } else if (status["data"] == 3) {
+                                //sudah ada semua
+                                Navigator.pushReplacementNamed(
+                                    context, "/home");
+                              }
                             } else {
                               Fluttertoast.showToast(
                                   msg: "Gagal Login",
@@ -352,6 +356,8 @@ class _LoginPageState extends State<LoginPage> {
                                   backgroundColor: Colors.green,
                                   textColor: Colors.white,
                                   fontSize: 16.0);
+                              Navigator.pushReplacementNamed(
+                                  context, "/updateuser");
                             }
                           }
                         });

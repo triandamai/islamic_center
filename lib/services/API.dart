@@ -7,8 +7,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_sign_in/google_sign_in.dart';
 
-final String BASE_URL = "http://www.islamic_center.projeku.site/";
-final String BASE_URL2 = "http://192.168.100.229:8080/";
+final String BASE_URL2 = "http://islamic-center.projeku.site/";
+final String BASE_URL = "http://192.168.33.65:4000/";
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 final GoogleSignIn googleSignIn = new GoogleSignIn();
@@ -26,18 +26,23 @@ abstract class API {
 
 class Controller implements API {
   @override
-  Future<http.Response> uploadImgaeUser(File file, String url, body) async {
+  Future<http.Response> uploadImgaeUser(
+    File file,
+    String url,
+    namafile,
+  ) async {
     // TODO implement uploadImgaeUser
-    String baseImage = base64Encode(file.readAsBytesSync());
-    String filename = file.path.split("/").last;
-
-    return await http.post(BASE_URL2 + url, body: body);
+    List<int> test = file.readAsBytesSync();
+    String baseName = base64Encode(test);
+    print(baseName);
+    return await http
+        .post(BASE_URL2 + url, body: {"namafile": namafile, "image": baseName});
   }
 
   @override
   Future<http.Response> put(String url, body) async {
     // TODO implement put
-    return await http.put(url,
+    return await http.put(BASE_URL2 + url,
         headers: {'Content-Type': 'application/json'},
         body: JsonCodec().encode(body));
   }

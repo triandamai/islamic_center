@@ -3,10 +3,12 @@ import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter/material.dart';
 import 'package:islamic_center/services/auth.dart';
 import 'package:islamic_center/splash.dart';
+import 'package:islamic_center/src/add_biodata.dart';
 import 'package:islamic_center/src/daftar.dart';
 import 'package:islamic_center/src/home.dart';
 import 'package:islamic_center/src/login.dart';
 import 'package:islamic_center/src/pick_camera.dart';
+import 'package:islamic_center/src/updateimage.dart';
 
 void main() => runApp(MyApp());
 
@@ -43,6 +45,8 @@ class _MainAppState extends State<MainApp> {
       '/daftar': (context) => Register(),
       '/home': (context) => Home(),
       '/camera': (context) => CameraScreen(),
+      '/updateuser': (context) => SimpanBiodata(),
+      '/uploadimageuser': (context) => UploadProfile(),
       // '/detail_kajian': (context) => DetailKajian(),
     };
     if (isAndroid) {
