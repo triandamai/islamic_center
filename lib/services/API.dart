@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final String BASE_URL2 = "http://islamic-center.projeku.site/";
-final String BASE_URL = "http://192.168.33.65:4000/";
+final String BASE_URL = "http://192.168.100.229:4000/";
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 final GoogleSignIn googleSignIn = new GoogleSignIn();
@@ -21,22 +21,21 @@ abstract class API {
   Future<FirebaseUser> getcurrentUser();
   Future<FirebaseUser> signInwithgoogle();
   Future<http.Response> put(String url, body);
-  Future<http.Response> uploadImgaeUser(File file, String url, body);
+  Future<http.Response> uploadImgaeUser(String url, body);
 }
 
 class Controller implements API {
   @override
   Future<http.Response> uploadImgaeUser(
-    File file,
     String url,
-    namafile,
+    body,
   ) async {
     // TODO implement uploadImgaeUser
-    List<int> test = file.readAsBytesSync();
-    String baseName = base64Encode(test);
-    print(baseName);
-    return await http
-        .post(BASE_URL2 + url, body: {"namafile": namafile, "image": baseName});
+
+    // List<int> imageBytes = await file.readAsBytes();
+    // String base64 = base64Encode(imageBytes);
+    print(body);
+    return await http.post(BASE_URL2 + url, body: body);
   }
 
   @override

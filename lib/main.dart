@@ -31,7 +31,7 @@ class _MainAppState extends State<MainApp> {
   bool isLogin = false;
   @override
   void initState() {
-    // TODO: implement initState
+    // TODO implement initState
     super.initState();
   }
 
@@ -57,7 +57,7 @@ class _MainAppState extends State<MainApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: '/',
+        initialRoute: '/uploadimageuser',
         routes: routes,
       );
     } else {
@@ -66,7 +66,7 @@ class _MainAppState extends State<MainApp> {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: CupertinoThemeData(primaryColor: Colors.blue),
-        initialRoute: isLogin ? '/' : '/login',
+        initialRoute: isLogin ? '/uploadimageuser' : '/uploadimageuser',
         routes: routes,
       );
     }

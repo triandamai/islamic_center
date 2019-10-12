@@ -15,17 +15,17 @@ class _SplashState extends State<Splash> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    widget.auth.getCurrentUser().then((currentUser user) {
-      if (user != null) {
-        if (user.loginStatus) {
-          Navigator.pushReplacementNamed(context, '/home');
-        } else {
-          Navigator.pushReplacementNamed(context, '/login');
-        }
-      } else {
-        Navigator.pushReplacementNamed(context, '/login');
-      }
-    });
+    // widget.auth.getCurrentUser().then((currentUser user) {
+    //   if (user != null) {
+    //     if (user.loginStatus) {
+    //       Navigator.pushReplacementNamed(context, '/home');
+    //     } else {
+    //       Navigator.pushReplacementNamed(context, '/login');
+    //     }
+    //   } else {
+    //     Navigator.pushReplacementNamed(context, '/login');
+    //   }
+    // });
   }
 
   @override

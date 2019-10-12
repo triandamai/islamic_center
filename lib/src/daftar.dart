@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:islamic_center/services/API.dart';
+import 'package:dio/dio.dart';
 
 class Register extends StatefulWidget {
   @override
